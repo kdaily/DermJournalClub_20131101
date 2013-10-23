@@ -1,0 +1,36 @@
+---
+title       : Dermatology Branch Journal Club
+subtitle    : 2013-11-01
+author      : Kenneth Daily
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+url         : {lib: libraries}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax, bootstrap, quiz]
+mode        : selfcontained # {standalone, draft}
+
+---
+
+## 
+
+<img src="./assets/img/title_page.png" alt="title page" height=75>
+
+### First Slide
+
+Some stuff about virome here
+
+--- &twocol
+
+## Next Slide
+
+*** left
+
+### Stuff on the left:
+Some stuff
+
+*** right
+
+### Stuff on the right:
+> Some more stuff.
+
