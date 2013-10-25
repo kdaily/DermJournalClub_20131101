@@ -9,7 +9,6 @@ highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
 widgets     : [mathjax, bootstrap, quiz]
 mode        : selfcontained # {standalone, draft}
-
 ---
 
 ## 
@@ -19,6 +18,62 @@ mode        : selfcontained # {standalone, draft}
 ### First Slide
 
 Some stuff about virome here
+
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(xtable)
+library(plyr)
+
+options(xtable.type="html", xtable.caption.placement="top")
+
+data.tbl2b <- read.csv("./data/fig2b.csv", colClasses=c("integer", "factor", "numeric", "factor"))
+
+```
+
+```{r echo=FALSE, fig.width=5, fig.height=5}
+p <- ggplot(data.tbl2b, aes(x=factor(Viral_family), y=Substitution_rate))
+p <- p + geom_boxplot()
+p <- p + geom_jitter(aes(color=Temperate), position = position_jitter(width = 0.1), size=3)
+p <- p + labs(x="Viral Family", y="Substitution Rate")
+p <- p + theme_bw()
+p
+```
+
+---
+
+```{r echo=FALSE}
+kruskal.test(Substitution_rate ~ Viral_family, data=data.tbl2b)
+```
+
+```{r echo=FALSE, results='asis', warning=FALSE, message=FALSE}
+wt.results <- adply(levels(data.tbl2b$Viral_family), 1,
+                    function(x) data.frame(Viral_family=x, p.value=wilcox.test(Substitution_rate ~ Viral_comp,
+                                                                               data=transform(data.tbl2b, 
+                                                                                              Viral_comp=factor(Viral_family == x,
+                                                                                                                levels=c(TRUE, FALSE),
+                                                                                                                ordered=TRUE)),
+                                                                               alternative='g')$p.value))
+
+wt.results$p.value <- round(wt.results$p.value, 4)
+wt.xtbl <- xtable(wt.results, caption="One-sided, pairwise Wilcoxon test of each virus family against all others.")
+digits(wt.xtbl) <- c(1,1,1,4)
+print(wt.xtbl)
+```
+
+---
+## Wilcoxon test on temperate vs. non-temperate bacteriophages.
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+wilcox.test(Substitution_rate ~ Temperate, data=data.tbl2b)
+```
+
+---
+## Wilcoxon test on temperate vs. non-temperate bacteriophages, excluding the Microviridae
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+wilcox.test(Substitution_rate ~ Temperate, data=subset(data.tbl2b, Viral_family != "Microviridae"), alternative='g')
+```
+
 
 --- &twocol
 
