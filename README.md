@@ -1,7 +1,7 @@
 Derm journal club 2013-11-01
 =========================
 
-*Environmental shaping of codon usage and functional adaptation acrossmicrobial communities *
+*Environmental shaping of codon usage and functional adaptation acrossmicrobial communities*
 ---------------------------
 
 ### Papers
