@@ -1,12 +1,12 @@
 Derm journal club 2013-11-01
 =========================
 
-*Rapid evolution of the human gut virome*
+*Environmental shaping of codon usage and functional adaptation acrossmicrobial communities *
 ---------------------------
 
 ### Papers
 
-http://www.pnas.org/content/110/30/12450
+http://nar.oxfordjournals.org/content/41/19/8842.full
 
 ## References
 
